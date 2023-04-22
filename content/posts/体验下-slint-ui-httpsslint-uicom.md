@@ -1,12 +1,12 @@
 ---
-title: "体验下 slint ui （https://slint-ui.com/）"
+title: "体验下 slint ui"
 date: 2023-04-22T13:09:00+08:00
 draft: false
 ---
 
 先总结下结论：这个框架目前功能还不完善，但是想法真是挺好的，如果路线不错，将来还是有希望的。
 
-slint-ui是Qt前员工搞出来的一个新的ui，用rust写的，目前支持使用rust/c++/javascipt开发。ui使用了一个新的语言，这个语言很像 QML，描述控件的功能都可以完成，但是复杂的action还得用开发语言来写。重要的是，这个语言最后会直接生成开发语言，一起编译，而不是像QML里的javascript，还需要javascript运行时，所以速度肯定是要快一些的。不好的是，生成的代码不易读懂，基本没法调试。
+[slint ui](https://slint-ui.com/)是Qt前员工搞出来的一个新的ui，用rust写的，目前支持使用rust/c++/javascipt开发。ui使用了一个新的语言，这个语言很像 QML，描述控件的功能都可以完成，但是复杂的action还得用开发语言来写。重要的是，这个语言最后会直接生成开发语言，一起编译，而不是像QML里的javascript，还需要javascript运行时，所以速度肯定是要快一些的。不好的是，生成的代码不易读懂，基本没法调试。
 
 作为一个有QML开发经验的工程师，用起来感觉比 egui/iced 更简单一些，相比tauri不需要掌握一大堆前端开发的东西。
 
