@@ -1,5 +1,5 @@
 ---
-title: "Emscriptgen Getting Start"
+title: "Emscripten Getting Start"
 date: 2023-06-11T11:15:29+08:00
 draft: false
 ---
@@ -7,7 +7,7 @@ draft: false
 自从知道[occ的wasm](https://ocjs.org/)版本的存在，我就想试试wasm了，
 这么多年的c++经验看看能不能在web时代继续发光发热。今天入个门！
 
-## 安装 emscriptgen
+## 安装 emscripten
 
 参照 [官方文档](https://emscripten.org/docs/getting_started/downloads.html)，
 连下载都很顺利
