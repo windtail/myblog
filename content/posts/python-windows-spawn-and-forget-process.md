@@ -13,15 +13,9 @@ draft: false
 
 ```python
 if 'nt' == os.name:
-     flags = 0
-     flags |= 0x00000008  # DETACHED_PROCESS
-     flags |= 0x00000200  # CREATE_NEW_PROCESS_GROUP
-     flags |= 0x08000000  # CREATE_NO_WINDOW
-
-     pkwargs = {
-         'close_fds': True,  # close stdin/stdout/stderr on child
-         'creationflags': flags,
-     }
-
- p = subprocess.Popen([sys.executable, '-c', cmd], **pkwargs)
+     p = subprocess.Popen(
+         [sys.executable, '-c', cmd], 
+         close_fds=True,  # close stdin/stdout/stderr on child
+         creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.CREATE_NO_WINDOW,
+     )
 ```
