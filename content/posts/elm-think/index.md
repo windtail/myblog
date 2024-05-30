@@ -1,7 +1,7 @@
 ---
 title: "Elm 的一点想法"
 date: 2024-05-27T08:50:21+08:00
-draft: true
+draft: false
 tags:
   - rust
   - gui
