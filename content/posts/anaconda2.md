@@ -18,14 +18,9 @@ conda包管理不止是pip那么简单，还完成了virtualenv的功能，并�
 3. conda remove --name  --all
 4. conda info --envs
 5. conda search
-6. condat install
+6. conda install
 7. activate
 8. deactivate
 
 
 值得表扬是conda没有维护的包也可以直接使用pip安装的
-
-
- 
-
-

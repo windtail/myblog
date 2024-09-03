@@ -13,6 +13,11 @@ miniconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda
 
 更改仓库地址: https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/
 
+```shell
+conda init
+conda config --set auto_activate_base false
+```
+
 ## 环境管理
 
 ```shell
