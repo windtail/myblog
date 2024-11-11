@@ -33,3 +33,34 @@ tags:
 - 手动修改了`pyproject.toml`后，更新 `poetry.lock` 文件：`poetry lock --no-update`，注意`--no-update`否则会所有依赖都更新了
 - 安装依赖：`poetry install`
 - 只安装运行时依赖：`poetry install --only main`
+
+## 添加pypi镜像
+
+如果只是为本工程添加镜像，可以 `pyproject.toml` 添加如下行
+
+```toml
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+priority = "primary"
+```
+
+但是全局就没有那么友好了。还得装个[插件](https://github.com/arcesium/poetry-plugin-pypi-mirror)，按插件说明
+
+```shell
+pipx inject poetry poetry-plugin-pypi-mirror
+```
+
+手动打开poetry用户配置文件，注意，没法使用`poetry config`命令，用户配置文件在这里
+
+```shell
+notepad $env:APPDATA\pypoetry\config.toml
+```
+
+在打开的文件中添加
+
+```toml
+[plugins]
+[plugins.pypi_mirror]
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+```
