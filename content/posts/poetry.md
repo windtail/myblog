@@ -29,6 +29,8 @@ tags:
 - 新建工程：`poetry new xxx`
 - 在已有工程中添加：`poetry init`
 - 添加依赖：`poetry add <dep>`
+- 添加dev依赖：`poetry add <dep> -G dev`
+- 添加某个平台的依赖：`poetry add <dep> --platform win32`
 - 删除依赖：`poetry remove <dep>`
 - 手动修改了`pyproject.toml`后，更新 `poetry.lock` 文件：`poetry lock --no-update`，注意`--no-update`否则会所有依赖都更新了
 - 安装依赖：`poetry install`
