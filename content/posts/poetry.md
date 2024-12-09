@@ -21,13 +21,14 @@ tags:
 ## [配置](https://python-poetry.org/docs/configuration/)
 
 - 查看当前配置： `poetry config --list`
-- 将默认的venv的路径设置到工程根目录中的 `.venv`：`poetry config virtualenvs.in-project true`
+- ~~将默认的venv的路径设置到工程根目录中的 `.venv`：`poetry config virtualenvs.in-project true`~~ (放在外面还是好一点，省得搜索时总搜到这里的代码)
 - 如果C盘空间不足，可以将cache设置到D盘：`poetry config cache-dir D:/.poetry`
 
 ## [常用命令](https://python-poetry.org/docs/cli/)
 
 - 新建工程：`poetry new xxx`
 - 在已有工程中添加：`poetry init`
+- 使用指定的python（[官方](https://python-poetry.org/docs/managing-environments/#switching-between-environments)）：`poetry env use /full/path/to/python`
 - 添加依赖：`poetry add <dep>`
 - 添加dev依赖：`poetry add <dep> -G dev`
 - 添加某个平台的依赖：`poetry add <dep> --platform win32`
@@ -35,6 +36,28 @@ tags:
 - 手动修改了`pyproject.toml`后，更新 `poetry.lock` 文件：`poetry lock --no-update`，注意`--no-update`否则会所有依赖都更新了
 - 安装依赖：`poetry install`
 - 只安装运行时依赖：`poetry install --only main`
+
+### extras
+
+poetry对extras支持得并不是很好，本以为group会自动映射成extras，但实际并不是这样。group只能被poetry安装，extras是pip安装时要的东西，
+需要将某个package设置为optional，例如 `pygit2 = { version = "^1.16.0", optional = true }`
+
+然后添加
+```toml
+[tool.poetry.extras]
+extra_name = ["pygit2", "other-package"]
+```
+
+默认poetry install时还不会安装，需要手动安装，例如 `poetry install --extras extra_name` 或者 `poetry install --all-extras`
+
+### export to requirements.txt
+
+poetry可以导出为requirements.txt（[官方文档](https://python-poetry.org/docs/cli/#export)），然后就可以用pip安装了。
+
+```shell
+poetry export -f requirements.txt --output requirements.txt
+```
+
 
 ## 添加pypi镜像
 
@@ -66,3 +89,7 @@ notepad $env:APPDATA\pypoetry\config.toml
 [plugins.pypi_mirror]
 url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 ```
+
+## 题外话
+
+我现在更喜欢的镜像是 https://pypi.cstcloud.cn/simple/ 速度挺快的！
