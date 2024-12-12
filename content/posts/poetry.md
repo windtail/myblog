@@ -16,7 +16,30 @@ tags:
 
 ## [安装](https://python-poetry.org/docs/#installation)
 
-建议使用 `pipx` 安装
+### pipx
+
+建议使用 `pipx` 安装，那 pipx 要怎么安装呢。
+
+在linux上 pipx 只需要 apt install 下就可以了。Windows上需要用scoop来安装，
+scoop虽然很好，但是安装时需要科学上网。如果有困难，也可以使用[uv](https://docs.astral.sh/uv/)来安装poetry。
+
+使用pipx安装完成后，记得用 `pipx ensurepath` 将 poetry的路径加到PATH中。
+
+### uv
+
+uv这个工具也不错，可以用来替代 pyenv, pipx, venv/poetry/pipenv，管理虚拟环境时，不如poetry好，lock的时候检查时没有poetry全。
+uv由rust编写，就是一个单独的exe，可以直接从[github release](https://github.com/astral-sh/uv/releases)下载。下载完成后，
+需要配置镜像，新建 $env:AppData\Roaming\uv\uv.toml 文件，内容如下：
+
+```toml
+[[index]]
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+default = true
+```
+
+配置好后，就可以使用 `uv tool install poetry` 或 `uv tool install --with poetry-plugin-pypi-mirror poetry` 安装了。
+
+使用uv安装完成后，记得用 `uv tool update-shell` 将 poetry 的路径加到PATH中。
 
 ## [配置](https://python-poetry.org/docs/configuration/)
 
@@ -89,7 +112,3 @@ notepad $env:APPDATA\pypoetry\config.toml
 [plugins.pypi_mirror]
 url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 ```
-
-## 题外话
-
-我现在更喜欢的镜像是 https://pypi.cstcloud.cn/simple/ 速度挺快的！
