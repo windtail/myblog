@@ -2,6 +2,9 @@
 title: "Uv Python Versions"
 date: 2024-12-14T22:06:37+08:00
 draft: false
+tags:
+  - python  
+  - uv
 ---
 
 ## uv python version management

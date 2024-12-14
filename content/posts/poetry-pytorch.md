@@ -2,6 +2,9 @@
 title: "Poetry Pytorch"
 date: 2024-12-13T15:13:37+08:00
 draft: false
+tags:
+  - python
+  - poetry
 ---
 
 ## 问题
