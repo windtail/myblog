@@ -41,4 +41,51 @@ NuShell就好很多，安装时只有一个exe文件，就支持了非常多的�
 
 ## 文档丰富
 
-[官方文档](https://www.nushell.sh/book/)非常得好，我这里就不再介绍，太多了，也介绍不完。
+[官方文档](https://www.nushell.sh/book/)非常得好，我这里只简单说几个重要的。
+
+
+### completions
+
+```shell
+git clone github:nushell/nu_scripts.git
+```
+
+`custom-completions` 文件夹中支持很多命令补全。可以将需要的命令添加 `$nu.config-path` 文件中，
+例如：
+
+```text
+use /path/to/nu_scripts/custom-completions/git/git-completions.nu *
+use /path/to/nu_scripts/custom-completions/poetry/poetry-completions.nu *
+use /path/to/nu_scripts/custom-completions/cargo/cargo-completions.nu *
+use /path/to/nu_scripts/custom-completions/rustup/rustup-completions.nu *
+use /path/to/nu_scripts/custom-completions/scoop/scoop-completions.nu *
+use /path/to/nu_scripts/custom-completions/pnpm/pnpm-completions.nu *
+use /path/to/nu_scripts/custom-completions/ssh/ssh-completions.nu *
+```
+
+### 环境变量
+
+环境变量应该是 `$nu.env-path` 中添加，例如
+
+```text
+$env.RUSTUP_UPDATE_ROOT = 'https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup'
+$env.RUSTUP_DIST_SERVER = 'https://mirrors.tuna.tsinghua.edu.cn/rustup'
+```
+
+### 安装插件
+
+```shell
+let plugins = [ nu_plugin_inc
+  nu_plugin_clipboard
+  nu_plugin_port_list
+  nu_plugin_hashes
+  nu_plugin_gstat
+  nu_plugin_formats
+  nu_plugin_query
+] 
+
+$plugins | each { cargo install $in --locked } | ignore
+$plugins  | each { which $in | get 0.path | plugin add $in } | ignore
+```
+
+安装完成后，重新打开一个shell，就可以使用这些插件了。
