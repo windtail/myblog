@@ -135,7 +135,7 @@ program = "($env.HOME)/.cargo/bin/nu"
 - [poetry](https://python-poetry.org/)：poetry在管理python包时比uv更胜一筹，有关poetry使用可以参考我的另一篇[文章]({{< ref "/posts/poetry.md" >}})
 
 ```shell
-cargo install uv --locked
+cargo install --git https://github.com/astral-sh/uv uv
 uv tool install poetry
 ```
 
@@ -156,10 +156,55 @@ python -m pip install pip --upgrade --force-reinstall
 ```shell
 cargo install fnm --locked
 
-'
+r#'
 $env.FNM_NODE_DIST_MIRROR = 'https://npmmirror.com/dist'
-' | save --append $nu.env-path
 
-$env.FNM_NODE_DIST_MIRROR = 'https://npmmirror.com/dist'
+fnm env --json | from json | load-env
+
+$env.PATH = ($env.PATH | prepend $env.FNM_MULTISHELL_PATH | prepend $'($env.FNM_MULTISHELL_PATH)/bin' | prepend 'node-version/.bin')
+
+if (not ($env | default false __fnm_hooked | get __fnm_hooked)) {
+  $env.__fnm_hooked = true
+  $env.config = ($env | default {} config).config
+  $env.config = ($env.config | default {} hooks)
+  $env.config = ($env.config | update hooks ($env.config.hooks | default {} env_change))
+  $env.config = ($env.config | update hooks.env_change ($env.config.hooks.env_change | default [] PWD))
+  $env.config = ($env.config | update hooks.env_change.PWD ($env.config.hooks.env_change.PWD | append {|_, dir|
+    if (['.node-version', '.nvmrc', 'package.json'] | any {|f| $f | path exists }) {
+      fnm use --silent-if-unchanged
+    }
+  }))
+}
+'# | save --append ~/.config/nushell/fnm.nu
+
+'
+source ~/.config/nushell/fnm.nu
+' | save --append $nu.config-path
+```
+
+重新启动终端，执行
+
+```shell
 fnm install --lts
 ```
+
+## 安装编辑器
+
+[helix](https://helix-editor.com/) 是一个和vim很像的编辑器，支持lsp，开箱就支持很多语言，
+不需要配置。对我来说，就是提示多一点，更像是emacs和vim的结合，在normal模式，按`<space>`或`:`，
+就有提示，自动补全和搜索命令，不用像vim那样记那么多命令，这点和emacs很像。
+
+```shell
+git clone --depth 1 https://github.com/helix-editor/helix
+cd helix
+cargo install --path helix-term --locked
+```
+
+然后还需要把源代码目录中的 `runtime` 目录，拷贝到 `~/.config/helix/runtime`，
+最后使用下面的命令，测试安装和配置是否正确
+
+```shell
+hx --health
+```
+
+[这里](https://kapeli.com/cheat_sheets/Helix.docset/Contents/Resources/Documents/index)是cheat-sheet
