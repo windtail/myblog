@@ -1,6 +1,6 @@
 ---
 title: "我的跨平台工具（持续更新）"
-date: 2025-01-11T21:18:20+08:00
+date: 2025-01-18T22:48:37+08:00
 draft: false
 ---
 
@@ -206,5 +206,11 @@ cargo install --path helix-term --locked
 ```shell
 hx --health
 ```
+
+[themes](https://github.com/CptPotato/helix-themes/releases/tag/latest)可以在这里下载，
+解压之后，将build目录中的文件拷贝到 `~/.config/helix/themes`
+
+然后在 `~/.config/helix/config.toml` 添加 `theme = "monokai"`，也可以选择别的theme，
+在hx打开时，可以执行 `theme` 命令选择一个主题，并且可以实时预览。
 
 [这里](https://kapeli.com/cheat_sheets/Helix.docset/Contents/Resources/Documents/index)是cheat-sheet
