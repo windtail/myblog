@@ -25,6 +25,14 @@ tags:
       }
     }
     ```
+
+> 以上配置没有用，需要更改systemd的配置，在相同的页面也有介绍：
+> 新建文件 `/etc/systemd/system/docker.service.d/http-proxy.conf`，并写入以下内容
+> ```text
+> [Service]
+> Environment="HTTP_PROXY=socks5://127.0.0.1:1080" "HTTPS_PROXY=socks5://127.0.0.1:1080"
+> ```
+
 3. **docker container**
 
    如果`docker build`和`docker run`时，容器自己还可能需要访问网络，这个在[这里](https://docs.docker.com/engine/cli/proxy/#configure-the-docker-client)配置。需要创建一个 `~/.docker/config.json`
