@@ -15,7 +15,7 @@ Python最近一段时间发展很快，各版本之间多有不兼容，为了�
 但是这个镜像只同步了最新的Python，如果需要下载旧版本Python，就需要连github了。镜像可以使用环境变量设置
 
 ```
-UV_PYTHON_INSTALL_MIRROR = 'https://mirror.nju.edu.cn/github-release/indygreg/python-build-standalone/'
+UV_PYTHON_INSTALL_MIRROR = 'https://python-standalone.org/mirror/astral-sh/python-build-standalone/'
 ```
 
 ## Migrate to uv
