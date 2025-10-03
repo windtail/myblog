@@ -2,6 +2,7 @@
 title: "It Is Time for Uv"
 date: 2025-05-25T09:55:11+08:00
 draft: false
+tags: ["python", "uv"]
 ---
 
 [uv](https://docs.astral.sh/uv/) 确实是一个很快很快的包管理工具，最重要的是它不止一个包管理工具，

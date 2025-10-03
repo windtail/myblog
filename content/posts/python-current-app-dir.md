@@ -2,6 +2,7 @@
 title: "Python Current App Dir"
 date: 2025-05-25T10:47:12+08:00
 draft: false
+tags: ["python"]
 ---
 
 我们有的时候需要获取只前程序所在的目录，可能需要加载一外部的资源等等。如果只是脚本，可以使用 `__file__`，但很多时候我们会使用

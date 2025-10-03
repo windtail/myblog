@@ -2,6 +2,7 @@
 title: "Pyfltk"
 date: 2025-05-25T10:57:43+08:00
 draft: false
+tags: ["python", "fltk"]
 ---
 
 ## Install
