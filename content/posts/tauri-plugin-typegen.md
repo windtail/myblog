@@ -7,6 +7,11 @@ tags:
   - tauri
 ---
 
+> BUG真的是太多了，略复杂一点的都搞不定，还是手动使用 [ts-rs](https://github.com/Aleph-Alpha/ts-rs) 生成比较好
+> 
+> 虽然今天终于上传代码到github上，[tauri-typegen](https://github.com/thwbh/tauri-typegen)，并且还改了名称，
+> 可以关注下，期待稳定下来
+
 `tauri-plugin-typegen` 确实是个好东西，可以为tauri注册的command及返回值自动生成typescript代码。
 虽然有一些bug，但仍然是可以用的，官方文档及命令行都有一些问题。
 
