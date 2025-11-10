@@ -19,6 +19,9 @@ tags: ["tauri", "frontend"]
 - interface 和 type 都可以用来定义接口类型，一般用 type
 - ?.[0] 可以用来访问可能不存在的index，和?.member类似
 - !号可以用来assert一个变量不为空，例如 user!
+- React.FC已不再推荐
+  - 组件一般使用 const Xxx = () => {} 的形式
+  - useXxx 一般直接使用 function useXxx() {} 的形式
 
 ## react或库的使用
 
@@ -229,3 +232,27 @@ app.render(
 
 > 注意：一定要修改 vite-env.d.ts，否则就会 tsc 会报错！！
 > vite-plugin-pages 没法自动生成带路由守卫的路由，但可以在生成之后，修改生成的 routes 对象。
+
+### zustand
+
+对于全局，并且频繁改变的状态，使用zustand性能更高，对于不怎么改变的配置、主题等，可使用useContext
+
+### xstate
+
+状态机是一个好东西，这个类似于 rust 的 smlang::statemachine，写起来略有一点不爽，但思想基本是一样的。
+
+setup中提供配置，包括
+- context和event的类型
+- delays常数的定义
+- guards的定义，guard可以访问context和对应的event
+- actions定义，action可以访问context和对应的event
+- actors的类型定义
+- 等
+
+createMachine主要提供
+- 初始状态
+- context的初始值
+- 状态转换表
+
+组件中使用 useMachine，返回的第3值是actorRef（即状态机自己的ref），可以使用useSelector将
+context中的某个成员包装成reative的变量
