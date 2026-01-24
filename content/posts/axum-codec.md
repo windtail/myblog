@@ -30,7 +30,7 @@ async fn me() -> Codec<User> {
 ## extract时错误处理
 
 为了统一格式，我们需要在extract出错时，也返回客户端期望的格式，如msgpack。应该如何处理呢。
-首先我们需要定义一个错误类型，如 `AppError`，并让它实现 `IntoCodecResponse` trait，然后如下
+首先我们需要定义一个错误类型，如 `ApiError`，并让它实现 `IntoCodecResponse` trait，然后如下
 
 ```rust
 use axum::extract::{FromRequestParts, Path, Query};
