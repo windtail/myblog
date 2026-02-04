@@ -51,3 +51,8 @@ proxy_set_header X-Forwarded-Proto $scheme;
 proxy_set_header X-Forwarded-Port  $server_port;
 proxy_set_header Host $http_host;
 ```
+
+### docker push
+
+按照上面的设置，即使docker login了，docker push时仍然会提示401，这是docker本身的问题，经抓包发现，docker在POST请求时，如果401，则直接报错了，
+经测试可以使用 skopeo 和 crane 来push
